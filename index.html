@@ -2,31 +2,56 @@
 <body>
 <script src="https://unpkg.com/vue@next"></script>
 
-<div id="app">
-  <h1>Election</h1>
+<div id="app" >
+    <h1>Election</h1>
 
-  <div v-for="candidate in candidates" style="padding:10px;">
-    <strong>{{ candidate.name }}</strong> {{ candidate.votes}} <button @click="vote(candidate)">Vote</button>
-  </div>
+    <h2>Add candidate</h2>
+
+    <form @submit.prevent="addCandidate">
+      <p>
+        Name: <input type="text" v-model="name">
+      </p>
+
+      <p>
+        Initial votes: <input type="text" v-model="initialVotes">
+      </p>
+
+      <p>
+        <button>Add</button>
+      </p>
+    </form>
+
+    <hr>
+
+    <h2>Results</h2>
+
+    <div v-for="candidate in candidates" style="padding:10px;">
+      <strong>{{ candidate.name }}</strong> {{ candidate.votes}} <button @click="vote(candidate)">Vote</button>
+    </div>
 </div>
 
 <script>
   Vue.createApp({
     data(){
       return {
+        name: '',
+        initialVotes: 0,
         candidates: [
           {name: "Violet", votes: 0},
           {name: "Dash", votes: 0},
           {name: "Jack Jack", votes: 0},
           {name: "Elastigirl", votes: 0},
           {name: "Mr. Incredible", votes: 0}
-        ]
+        ],
       }
     },
     methods:{
       vote(candidate) {
         candidate.votes++
-      }
+      },
+      addCandidate() {
+        this.candidates.push({ name: this.name, votes: this.initialVotes })
+      },
     }
   }).mount('#app')
 </script>
