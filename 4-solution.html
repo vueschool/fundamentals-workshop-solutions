@@ -1,0 +1,34 @@
+<html lang="en">
+<body>
+<script src="https://unpkg.com/vue@next"></script>
+
+<div id="app">
+  <h1>Election</h1>
+
+  <div v-for="candidate in candidates" style="padding:10px;">
+    <strong>{{ candidate.name }}</strong> {{ candidate.votes}} <button @click="vote(candidate)">Vote</button>
+  </div>
+</div>
+
+<script>
+  Vue.createApp({
+    data(){
+      return {
+        candidates: [
+          {name: "Violet", votes: 0},
+          {name: "Dash", votes: 0},
+          {name: "Jack Jack", votes: 0},
+          {name: "Elastigirl", votes: 0},
+          {name: "Mr. Incredible", votes: 0}
+        ]
+      }
+    },
+    methods:{
+      vote(candidate) {
+        candidate.votes++
+      }
+    }
+  }).mount('#app')
+</script>
+</body>
+</html>

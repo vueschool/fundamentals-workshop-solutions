@@ -1,0 +1,23 @@
+<html lang="en">
+<body>
+<script src="https://unpkg.com/vue@next"></script>
+
+<div id="app">
+
+  <p v-if="animal === 'dog'">Dog goes woof!</p>
+  <p v-else-if="animal === 'cat'">Cat goes meow!</p>
+  <p v-else>What does the {{animal}} say?</p>
+
+</div>
+
+<script>
+  Vue.createApp({
+    data(){
+      return {
+        animal: 'fox'
+      }
+    }
+  }).mount('#app')
+</script>
+</body>
+</html>

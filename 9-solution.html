@@ -4,41 +4,41 @@
 <script src="https://unpkg.com/vue@next"></script>
 
 <div id="app" >
-   <div @keyup.esc="resetVotes">
-     <h1>Election</h1>
+  <div @keyup.esc="resetVotes">
+    <h1>Election</h1>
 
-     <h2>Add candidate</h2>
+    <h2>Add candidate</h2>
 
-     <form @submit.prevent="addCandidate">
-       <p>
-         Name: <input type="text" v-model="form.name">
-       </p>
+    <form @submit.prevent="addCandidate">
+      <p>
+        Name: <input type="text" v-model="form.name">
+      </p>
 
-       <p>
-         Initial votes: <input type="text" v-model="form.votes">
-       </p>
+      <p>
+        Initial votes: <input type="text" v-model.number="form.votes">
+      </p>
 
-       <p>
-         <button>Add</button>
-       </p>
-     </form>
+      <p>
+        <button>Add</button>
+      </p>
+    </form>
 
-     <hr>
+    <hr>
 
-     <h2>Results</h2>
+    <h2>Results</h2>
 
-     <h3>Our mayor is {{ mayor}}, from {{ voters }} voters</h3>
+    <h3>Our mayor is {{ mayor}}, from {{ voters }} voters</h3>
 
-     <div v-for="candidate in orderedCandidates" style="padding:10px;">
-       <strong>{{ candidate.name }}</strong> {{ candidate.votes}} <button @click="vote(candidate)">Vote</button>
-     </div>
+    <div v-for="candidate in orderedCandidates" :key="candidate.name"  style="padding:10px;">
+      <strong>{{ candidate.name }}</strong> {{ candidate.votes}} <button @click="vote(candidate)">Vote</button>
+    </div>
 
-     <hr>
-     <h3>Original list</h3>
-     <div v-for="candidate in candidates" style="padding:10px;">
-       <strong>{{ candidate.name }}</strong> {{ candidate.votes}} <button @click="vote(candidate)">Vote</button>
-     </div>
-   </div>
+    <hr>
+    <h3>Original list</h3>
+    <div v-for="candidate in candidates" style="padding:10px;">
+      <strong>{{ candidate.name }}</strong> {{ candidate.votes}} <button @click="vote(candidate)">Vote</button>
+    </div>
+  </div>
 </div>
 
 <script>
@@ -77,6 +77,10 @@
       },
       addCandidate() {
         this.candidates.push(this.form)
+        this.form = {
+          name: '',
+          votes: 0
+        }
       },
       resetVotes(){
         this.candidates.forEach((candidate) => candidate.votes = 0)

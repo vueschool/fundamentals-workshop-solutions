@@ -1,0 +1,30 @@
+<html lang="en">
+<body>
+<script src="https://unpkg.com/vue@next"></script>
+
+<div id="app">
+  <div v-for="user in users">
+    <h2>{{ user.name }}</h2>
+    <ul>
+      <li v-for="hobby in user.hobbies">
+        {{ hobby }}
+      </li>
+    </ul>
+  </div>
+</div>
+
+<script>
+  Vue.createApp({
+    data(){
+      return {
+        users: [
+          {name: 'Alex', hobbies: ['coding', 'movies', 'techno party', 'boardgames']},
+          {name: 'Rolf', hobbies: ['golf', 'food', 'dancing']},
+          {name: 'Maria', hobbies: ['coding', 'swimming', 'boardgames']}
+        ]
+      }
+    }
+  }).mount('#app')
+</script>
+</body>
+</html>
