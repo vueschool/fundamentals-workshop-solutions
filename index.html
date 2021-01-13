@@ -27,7 +27,7 @@
 
      <h2>Results</h2>
 
-     <h3>Our mayor is {{ mayor}}</h3>
+     <h3>Our mayor is {{ mayor}}, from {{ voters }} voters</h3>
 
      <div v-for="candidate in orderedCandidates" style="padding:10px;">
        <strong>{{ candidate.name }}</strong> {{ candidate.votes}} <button @click="vote(candidate)">Vote</button>
@@ -64,6 +64,11 @@
       },
       mayor(){
         return this.orderedCandidates[0].name
+      },
+      voters(){
+        return this.candidates
+          .map( candidate => candidate.votes)
+          .reduce((a,b) => a+b, 0)
       }
     },
     methods:{
