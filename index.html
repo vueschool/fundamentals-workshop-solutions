@@ -3,18 +3,18 @@
 <script src="https://unpkg.com/vue@next"></script>
 
 <div id="app">
-  <h1>Hello {{ name }}</h1>
-  <p>
-    <strong>Enter your name:</strong>
-  </p>
-  <input type="text" v-model="name" />
+  
+  <p v-if="animal === 'dog'">Dog goes woof!</p>
+  <p v-else-if="animal === 'cat'">Cat goes meow!</p>
+  <p v-else>What does the {{animal}} say?</p>
+
 </div>
 
 <script>
   Vue.createApp({
     data(){
       return {
-        name: ''
+        animal: 'fox'
       }
     }
   }).mount('#app')
