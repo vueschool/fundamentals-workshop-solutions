@@ -1,5 +1,6 @@
 <html lang="en">
 <body>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.20/lodash.min.js"></script>
 <script src="https://unpkg.com/vue@next"></script>
 
 <div id="app" >
@@ -31,6 +32,12 @@
      <div v-for="candidate in orderedCandidates" style="padding:10px;">
        <strong>{{ candidate.name }}</strong> {{ candidate.votes}} <button @click="vote(candidate)">Vote</button>
      </div>
+
+     <hr>
+     <h3>Original list</h3>
+     <div v-for="candidate in candidates" style="padding:10px;">
+       <strong>{{ candidate.name }}</strong> {{ candidate.votes}} <button @click="vote(candidate)">Vote</button>
+     </div>
    </div>
 </div>
 
@@ -53,7 +60,7 @@
     },
     computed:{
       orderedCandidates(){
-        return this.candidates.sort((a,b) => b.votes - a.votes)
+        return _.orderBy(this.candidates, 'votes', 'desc')
       },
       mayor(){
         return this.orderedCandidates[0].name
