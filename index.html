@@ -3,25 +3,29 @@
 <script src="https://unpkg.com/vue@next"></script>
 
 <div id="app">
-    <div v-for="user in users">
-      <h2>{{ user.name }}</h2>
-      <ul>
-        <li v-for="hobby in user.hobbies">
-          {{ hobby }}
-        </li>
-      </ul>
-    </div>
+  <h1>Election</h1>
+
+  <div v-for="candidate in candidates" style="padding:10px;">
+    <strong>{{ candidate.name }}</strong> {{ candidate.votes}} <button @click="vote(candidate)">Vote</button>
+  </div>
 </div>
 
 <script>
   Vue.createApp({
     data(){
       return {
-        users: [
-          {name: 'Alex', hobbies: ['coding', 'movies', 'techno party', 'boardgames']},
-          {name: 'Rolf', hobbies: ['golf', 'food', 'dancing']},
-          {name: 'Maria', hobbies: ['coding', 'swimming', 'boardgames']}
+        candidates: [
+          {name: "Violet", votes: 0},
+          {name: "Dash", votes: 0},
+          {name: "Jack Jack", votes: 0},
+          {name: "Elastigirl", votes: 0},
+          {name: "Mr. Incredible", votes: 0}
         ]
+      }
+    },
+    methods:{
+      vote(candidate) {
+        candidate.votes++
       }
     }
   }).mount('#app')
