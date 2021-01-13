@@ -9,11 +9,11 @@
 
     <form @submit.prevent="addCandidate">
       <p>
-        Name: <input type="text" v-model="name">
+        Name: <input type="text" v-model="form.name">
       </p>
 
       <p>
-        Initial votes: <input type="text" v-model="initialVotes">
+        Initial votes: <input type="text" v-model="form.votes">
       </p>
 
       <p>
@@ -34,8 +34,10 @@
   Vue.createApp({
     data(){
       return {
-        name: '',
-        initialVotes: 0,
+        form: {
+          name: '',
+          votes: 0,
+        },
         candidates: [
           {name: "Violet", votes: 0},
           {name: "Dash", votes: 0},
@@ -50,7 +52,7 @@
         candidate.votes++
       },
       addCandidate() {
-        this.candidates.push({ name: this.name, votes: this.initialVotes })
+        this.candidates.push(this.form)
       },
     }
   }).mount('#app')
