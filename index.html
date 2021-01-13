@@ -1,0 +1,23 @@
+<html lang="en">
+<body>
+<script src="https://unpkg.com/vue@next"></script>
+
+<div id="app">
+  <h1>Hello {{ name }}</h1>
+  <p>
+    <strong>Enter your name:</strong>
+  </p>
+  <input type="text" v-model="name" />
+</div>
+
+<script>
+  Vue.createApp({
+    data(){
+      return {
+        name: ''
+      }
+    }
+  }).mount('#app')
+</script>
+</body>
+</html>
